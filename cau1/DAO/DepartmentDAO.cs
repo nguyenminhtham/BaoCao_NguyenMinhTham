@@ -8,7 +8,7 @@ namespace cau1.DAO
 {
     class DepartmentDAO
     {
-        public string Employee_2119110266 { get; set; }
-        public string Department_2119110266 { get; set; }
+        public string Ten { get; set; }
+        public string MaChucVu { get; set; }
     }
 }

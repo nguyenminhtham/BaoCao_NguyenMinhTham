@@ -28,7 +28,7 @@ namespace cau1
             List<EmployeeDAO> lstEmp = empBUS.ReadEmployee();
             foreach (EmployeeDAO emp in lstEmp)
             {
-                dvgNhanVien.Rows.Add(emp.Ma, emp.HoTen, emp.NoiSinh, emp.NgaySinh, emp.GioiTinh, emp.Ma.Department_2119110266);
+                dvgNhanVien.Rows.Add(emp.Ma, emp.HoTen, emp.NoiSinh, emp.NgaySinh, emp.GioiTinh, emp.ChucVu.Ten);
 
             }
             List<DepartmentDAO> lstDepartment_2119110266 = cvBUS.ReadDepartmentList();
@@ -51,7 +51,7 @@ namespace cau1
                 emp.Ma = tbIdNV.Text;
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
-                emp.MaCV = (DepartmentDAO)cbbCV.SelectedItem;
+                emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
                 emp.NgaySinh = dtNgaySinh.CustomFormat;
                 if (cbGioiTinh.Checked)
                 {
@@ -62,7 +62,7 @@ namespace cau1
                     emp.GioiTinh = 0;
                 }
                 empBUS.NewEmployee(emp);
-                dvgNhanVien.Rows.Add(emp.Ma, emp.HoTen, emp.NoiSinh, emp.NgaySinh, emp.GioiTinh, emp.Department_2119110266);
+                dvgNhanVien.Rows.Add(emp.Ma, emp.HoTen, emp.NoiSinh, emp.NgaySinh, emp.GioiTinh, emp.ChucVu.Ten);
             }
         }
 
@@ -77,7 +77,7 @@ namespace cau1
                 emp.Ma = tbIdNV.Text;
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
-                emp.MaCV = (DepartmentDAO)cbbCV.SelectedItem;
+                emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
                 emp.NgaySinh = dtNgaySinh.CustomFormat;
                 if (cbGioiTinh.Checked)
                 {
@@ -105,7 +105,7 @@ namespace cau1
                 emp.Ma = tbIdNV.Text;
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
-                emp.MaCV = (DepartmentDAO)cbbCV.SelectedItem;
+                emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
                 emp.NgaySinh = dtNgaySinh.CustomFormat;
                 if (cbGioiTinh.Checked)
                 {

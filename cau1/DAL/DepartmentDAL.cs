@@ -15,58 +15,35 @@ namespace cau1.DAL
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = "spSelectDepartment_2119110266";
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("select * from Department_2119110266", conn);
             SqlDataReader reader = cmd.ExecuteReader();
-            List<DepartmentDAO> lstDepartment_2119110266 = new List<DepartmentDAO>();
+            List<DepartmentDAO> lstDonVi = new List<DepartmentDAO>();
             while (reader.Read())
             {
                 DepartmentDAO donvi = new DepartmentDAO();
-                donvi.Ma = reader["Ma"].ToString();
-                donvi.Department_2119110266 = reader["Department_2119110266"].ToString();
-                lstDepartment_2119110266.Add(donvi);
+                donvi.MaChucVu = reader["IdDepartment"].ToString();
+                donvi.Ten = reader["Name"].ToString();
+                lstDonVi.Add(donvi);
             }
             conn.Close();
-            return lstDepartment_2119110266;
+            return lstDonVi;
         }
 
         public DepartmentDAO ReadDepartment(string id)
         {
-            DepartmentDAO emp = new DepartmentDAO();
             SqlConnection conn = CreateConnection();
             conn.Open();
-
-            try
+            SqlCommand cmd = new SqlCommand(
+                "select * from Department_2119110266 where IdDepartment = " + "'" + id + "'", conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            DepartmentDAO donvi = new DepartmentDAO();
+            if (reader.HasRows && reader.Read())
             {
-                //khỏi tạo instance của class SqlCommand
-                SqlCommand cmd = new SqlCommand();
-                //sử dụng thuộc tính CommandText để chỉ định tên Proc
-                cmd.CommandText = "spGetDepartment_2119110266";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = conn;
-
-                //khai báo các thông tin của tham số truyền vào
-                cmd.Parameters.Add("@Ma", SqlDbType.NVarChar).Value = emp.Ma;
-                //mở chuỗi kết nối
-                conn.Open();
-                //sử dụng ExecuteNonQuery để thực thi
-                cmd.ExecuteNonQuery();
-                //đóng chuỗi kết nối.
-                conn.Close();
-
+                donvi.MaChucVu = reader["IdDepartment"].ToString();
+                donvi.Ten = reader["Name"].ToString();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Co loi xay ra !!!" + e);
-            }
-            // dóng chuỗi kết nối
-            finally
-            {
-                conn.Close();
-            }
-            return emp;
+            conn.Close();
+            return donvi;
         }
     }
 }

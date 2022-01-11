@@ -13,10 +13,10 @@ namespace cau1.DAO
         public string NoiSinh { get; set; }
         public string NgaySinh { get; set; }
         public int GioiTinh { get; set; }
-        public DepartmentDAO MaCV { get; set; }
-        public string Department_2119110266
+        public DepartmentDAO ChucVu { get; set; }
+        public string TenChucVu
         {
-            get { return Ma.Department_2119110266; }
+            get { return ChucVu.Ten; }
         }
 
     }

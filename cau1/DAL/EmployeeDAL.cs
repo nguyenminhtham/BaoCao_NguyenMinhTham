@@ -19,140 +19,64 @@ namespace cau1.DAL
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = "spSelectEmployee_2119110266";
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("select * from Employee_2119110266", conn);
             SqlDataReader reader = cmd.ExecuteReader();
-            List<EmployeeDAO> lstEmployee_2119110266 = new List<EmployeeDAO>();
-            DepartmentDAL donvi = new DepartmentDAL();
+            List<EmployeeDAO> lstEmp = new List<EmployeeDAO>();
+            DepartmentDAL dep = new DepartmentDAL();
             while (reader.Read())
             {
-                EmployeeDAO Employee_2119110266 = new EmployeeDAO();
-                Employee_2119110266.Ma = reader["Ma"].ToString();
-                Employee_2119110266.HoTen = reader["HoTen"].ToString();
-                Employee_2119110266.MaCV = donvi.ReadDepartment(reader["MaCV"].ToString());
-                Employee_2119110266.NoiSinh = reader["NoiSinh"].ToString();
-                Employee_2119110266.NgaySinh = reader["NgaySinh"].ToString();
-                Employee_2119110266.GioiTinh = int.Parse(reader["GioiTinh"].ToString());
-                lstEmployee_2119110266.Add(Employee_2119110266);
+                EmployeeDAO emp = new EmployeeDAO();
+                emp.Ma = reader["Ma"].ToString();
+                emp.HoTen = reader["HoTen"].ToString();
+                emp.ChucVu = dep.ReadDepartment(reader["MaCV"].ToString());
+                emp.NoiSinh = reader["NoiSinh"].ToString();
+                emp.NgaySinh = reader["NgaySinh"].ToString();
+                emp.GioiTinh = int.Parse(reader["GioiTinh"].ToString());
+                lstEmp.Add(emp);
             }
             conn.Close();
-            return lstEmployee_2119110266;
+            return lstEmp;
         }
-
         public void DeleteEmployee(EmployeeDAO emp)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-
-            try
-            {
-                //khỏi tạo instance của class SqlCommand
-                SqlCommand cmd = new SqlCommand();
-                //sử dụng thuộc tính CommandText để chỉ định tên Proc
-                cmd.CommandText = "spDeleteEmployee";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = conn;
-
-                //khai báo các thông tin của tham số truyền vào
-                cmd.Parameters.Add("@Ma", SqlDbType.NVarChar).Value = emp.Ma;
-                //mở chuỗi kết nối
-                conn.Open();
-                //sử dụng ExecuteNonQuery để thực thi
-                cmd.ExecuteNonQuery();
-                //đóng chuỗi kết nối.
-                conn.Close();
-
-                Console.WriteLine("Xoa hoc sinh thanh cong !!!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Co loi xay ra !!!" + e);
-            }
-            // dóng chuỗi kết nối
-            finally
-            {
-                conn.Close();
-            }
-
+            SqlCommand cmd = new SqlCommand("delete from Employee_2119110266 where Ma=@Ma", conn);
+            cmd.Parameters.Add(new SqlParameter("@Ma", emp.Ma));
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
         public void NewEmployee(EmployeeDAO emp)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            try
-            {
-                //khỏi tạo instance của class SqlCommand
-                SqlCommand cmd = new SqlCommand();
-                //sử dụng thuộc tính CommandText để chỉ định tên Proc
-                cmd.CommandText = "spInsertEmployee";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = conn;
-
-                //khai báo các thông tin của tham số truyền vào
-                cmd.Parameters.Add("@Ma", SqlDbType.NVarChar).Value = emp.Ma;
-                cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = emp.HoTen;
-                cmd.Parameters.Add("@MaCV", SqlDbType.NVarChar).Value = emp.MaCV;
-                cmd.Parameters.Add("@NoiSinh", SqlDbType.NVarChar).Value = emp.NoiSinh;
-                cmd.Parameters.Add("@NgaySinh", SqlDbType.Date).Value = emp.NgaySinh;
-                cmd.Parameters.Add("@GioiTinh", SqlDbType.Int).Value = emp.GioiTinh;
-                //mở chuỗi kết nối
-                conn.Open();
-                //sử dụng ExecuteNonQuery để thực thi
-                cmd.ExecuteNonQuery();
-                //đóng chuỗi kết nối.
-                conn.Close();
-                Console.WriteLine("Them thanh cong !!!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Co loi xay ra !!!" + e);
-            }
-            // dóng chuỗi kết nối
-            finally
-            {
-                conn.Close();
-            }
+            SqlCommand cmd = new SqlCommand(
+                "insert into Employee_2119110266(Ma,HoTen,ChucVu,NoiSinh,NgaySinh,GioiTinh) values(@Ma,@HoTen,@MaCV,@NoiSinh,@NgaySinh,@GioiTinh)", conn);
+            cmd.Parameters.Add(new SqlParameter("@Ma", emp.Ma));
+            cmd.Parameters.Add(new SqlParameter("@HoTen", emp.HoTen));
+            cmd.Parameters.Add(new SqlParameter("@MaCV", emp.ChucVu.MaChucVu));
+            cmd.Parameters.Add(new SqlParameter("@NoiSinh", emp.NoiSinh));
+            cmd.Parameters.Add(new SqlParameter("@NgaySinh", emp.NgaySinh));
+            cmd.Parameters.Add(new SqlParameter("@GioiTinh", emp.GioiTinh));
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
         public void EditEmployee(EmployeeDAO emp)
         {
             SqlConnection conn = CreateConnection();
             conn.Open();
-            try
-            {
-                //khỏi tạo instance của class SqlCommand
-                SqlCommand cmd = new SqlCommand();
-                //sử dụng thuộc tính CommandText để chỉ định tên Proc
-                cmd.CommandText = " spEditEmployee";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = conn;
-
-                //khai báo các thông tin của tham số truyền vào
-                cmd.Parameters.Add("@Ma", SqlDbType.NVarChar).Value = emp.Ma;
-                cmd.Parameters.Add("@HoTen", SqlDbType.NVarChar).Value = emp.HoTen;
-                cmd.Parameters.Add("@MaCV", SqlDbType.NVarChar).Value = emp.MaCV;
-                cmd.Parameters.Add("@NoiSinh", SqlDbType.NVarChar).Value = emp.NoiSinh;
-                cmd.Parameters.Add("@NgaySinh", SqlDbType.Date).Value = emp.NgaySinh;
-                cmd.Parameters.Add("@GioiTinh", SqlDbType.Int).Value = emp.GioiTinh;
-                //mở chuỗi kết nối
-                conn.Open();
-                //sử dụng ExecuteNonQuery để thực thi
-                cmd.ExecuteNonQuery();
-                //đóng chuỗi kết nối.
-                conn.Close();
-
-                Console.WriteLine("Sua thanh cong !!!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Co loi xay ra !!!" + e);
-            }
-            // dóng chuỗi kết nối
-            finally
-            {
-                conn.Close();
-            }
+            SqlCommand cmd = new SqlCommand(
+                "update Employee_2119110266 set HoTen = @HoTen, Ma = @Ma," +
+                "ChucVu=@MaCV, NoiSinh=@NoiSinh," +
+                "NgaySinh=@NgaySinh, GioiTinh=@GioiTinh where @MaCV = ChucVu", conn);
+            cmd.Parameters.Add(new SqlParameter("@Ma", emp.Ma));
+            cmd.Parameters.Add(new SqlParameter("@HoTen", emp.HoTen));
+            cmd.Parameters.Add(new SqlParameter("@MaCV", emp.ChucVu.MaChucVu));
+            cmd.Parameters.Add(new SqlParameter("@NoiSinh", emp.NoiSinh));
+            cmd.Parameters.Add(new SqlParameter("@NgaySinh", emp.NgaySinh));
+            cmd.Parameters.Add(new SqlParameter("@GioiTinh", emp.GioiTinh));
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
