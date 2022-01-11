@@ -21,8 +21,8 @@ namespace cau1.DAL
             while (reader.Read())
             {
                 DepartmentDAO donvi = new DepartmentDAO();
-                donvi.MaChucVu = reader["IdDepartment"].ToString();
-                donvi.Ten = reader["Name"].ToString();
+                donvi.MaChucVu = reader["Ma"].ToString();
+                donvi.Ten = reader["HoTen"].ToString();
                 lstDonVi.Add(donvi);
             }
             conn.Close();
@@ -34,13 +34,13 @@ namespace cau1.DAL
             SqlConnection conn = CreateConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(
-                "select * from Department_2119110266 where IdDepartment = " + "'" + id + "'", conn);
+                "select * from Department_2119110266 where Ma = " + "'" + id + "'", conn);
             SqlDataReader reader = cmd.ExecuteReader();
             DepartmentDAO donvi = new DepartmentDAO();
             if (reader.HasRows && reader.Read())
             {
-                donvi.MaChucVu = reader["IdDepartment"].ToString();
-                donvi.Ten = reader["Name"].ToString();
+                donvi.MaChucVu = reader["Ma"].ToString();
+                donvi.Ten = reader["HoTen"].ToString();
             }
             conn.Close();
             return donvi;

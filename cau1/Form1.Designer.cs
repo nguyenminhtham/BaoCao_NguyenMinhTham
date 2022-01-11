@@ -46,9 +46,9 @@ namespace cau1
             this.cbbCV = new System.Windows.Forms.ComboBox();
             this.Ma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoiSinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoiSinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvgNhanVien)).BeginInit();
             this.SuspendLayout();
@@ -60,9 +60,9 @@ namespace cau1
             this.dvgNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ma,
             this.HoTen,
+            this.NoiSinh,
             this.NgaySinh,
             this.GioiTinh,
-            this.NoiSinh,
             this.ChucVu});
             this.dvgNhanVien.Location = new System.Drawing.Point(12, 123);
             this.dvgNhanVien.Name = "dvgNhanVien";
@@ -157,7 +157,7 @@ namespace cau1
             // cbGioiTinh
             // 
             this.cbGioiTinh.AutoSize = true;
-            this.cbGioiTinh.Location = new System.Drawing.Point(389, 72);
+            this.cbGioiTinh.Location = new System.Drawing.Point(686, 30);
             this.cbGioiTinh.Name = "cbGioiTinh";
             this.cbGioiTinh.Size = new System.Drawing.Size(102, 19);
             this.cbGioiTinh.TabIndex = 10;
@@ -182,7 +182,7 @@ namespace cau1
             // 
             this.tbNoiSinh.Location = new System.Drawing.Point(266, 67);
             this.tbNoiSinh.Name = "tbNoiSinh";
-            this.tbNoiSinh.Size = new System.Drawing.Size(100, 23);
+            this.tbNoiSinh.Size = new System.Drawing.Size(522, 23);
             this.tbNoiSinh.TabIndex = 13;
             // 
             // cbbCV
@@ -205,6 +205,12 @@ namespace cau1
             this.HoTen.HeaderText = "Họ tên";
             this.HoTen.Name = "HoTen";
             // 
+            // NoiSinh
+            // 
+            this.NoiSinh.DataPropertyName = "NoiSinh";
+            this.NoiSinh.HeaderText = "Nơi Sinh";
+            this.NoiSinh.Name = "NoiSinh";
+            // 
             // NgaySinh
             // 
             this.NgaySinh.DataPropertyName = "NgaySinh";
@@ -217,12 +223,6 @@ namespace cau1
             this.GioiTinh.HeaderText = "Giới Tính";
             this.GioiTinh.Name = "GioiTinh";
             // 
-            // NoiSinh
-            // 
-            this.NoiSinh.DataPropertyName = "NoiSinh";
-            this.NoiSinh.HeaderText = "Nơi Sinh";
-            this.NoiSinh.Name = "NoiSinh";
-            // 
             // ChucVu
             // 
             this.ChucVu.DataPropertyName = "ChucVu";
@@ -233,7 +233,7 @@ namespace cau1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 339);
+            this.ClientSize = new System.Drawing.Size(800, 339);
             this.Controls.Add(this.cbbCV);
             this.Controls.Add(this.tbNoiSinh);
             this.Controls.Add(this.tbName);
@@ -261,12 +261,6 @@ namespace cau1
         #endregion
 
         private System.Windows.Forms.DataGridView dvgNhanVien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ma;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoiSinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChucVu;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
@@ -281,6 +275,12 @@ namespace cau1
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbNoiSinh;
         private System.Windows.Forms.ComboBox cbbCV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoiSinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChucVu;
     }
 }
 
