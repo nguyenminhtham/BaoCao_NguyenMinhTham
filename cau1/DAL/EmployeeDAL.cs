@@ -30,7 +30,7 @@ namespace cau1.DAL
                 emp.HoTen = reader["HoTen"].ToString();
                 emp.ChucVu = dep.ReadDepartment(reader["MaCV"].ToString());
                 emp.NoiSinh = reader["NoiSinh"].ToString();
-                emp.NgaySinh = reader["NgaySinh"].ToString();
+                emp.NgaySinh = (DateTime)reader["NgaySinh"];
                 emp.GioiTinh = int.Parse(reader["GioiTinh"].ToString());
                 lstEmp.Add(emp);
             }
@@ -51,7 +51,7 @@ namespace cau1.DAL
             SqlConnection conn = CreateConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(
-                "insert into Employee_2119110266(Ma,HoTen,ChucVu,NoiSinh,NgaySinh,GioiTinh) values(@Ma,@HoTen,@MaCV,@NoiSinh,@NgaySinh,@GioiTinh)", conn);
+                "insert into Employee_2119110266(Ma,HoTen,NgaySinh,GioiTinh,NoiSinh,MaCV) values(@Ma,@HoTen,@NgaySinh,@GioiTinh,@NoiSinh,@MaCV)", conn);
             cmd.Parameters.Add(new SqlParameter("@Ma", emp.Ma));
             cmd.Parameters.Add(new SqlParameter("@HoTen", emp.HoTen));
             cmd.Parameters.Add(new SqlParameter("@MaCV", emp.ChucVu.MaChucVu));
@@ -75,7 +75,6 @@ namespace cau1.DAL
             cmd.Parameters.Add(new SqlParameter("@NoiSinh", emp.NoiSinh));
             cmd.Parameters.Add(new SqlParameter("@NgaySinh", emp.NgaySinh));
             cmd.Parameters.Add(new SqlParameter("@GioiTinh", emp.GioiTinh));
-            cmd.ExecuteNonQuery();
             conn.Close();
         }
     }

@@ -11,7 +11,7 @@ namespace cau1.DAO
         public string Ma { get; set; }
         public string HoTen { get; set; }
         public string NoiSinh { get; set; }
-        public string NgaySinh { get; set; }
+        public DateTime NgaySinh { get; set; }
         public int GioiTinh { get; set; }
         public DepartmentDAO ChucVu { get; set; }
         public string TenChucVu

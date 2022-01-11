@@ -35,7 +35,7 @@ namespace cau1
             foreach (DepartmentDAO cv in lstDepartment_2119110266)
             {
                 cbbCV.Items.Add(cv);
-                cbbCV.DisplayMember = "Department_2119110266";
+                cbbCV.DisplayMember = "Ten";
             }
         }
 
@@ -52,7 +52,7 @@ namespace cau1
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
                 emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
-                emp.NgaySinh = dtNgaySinh.CustomFormat;
+                emp.NgaySinh = dtNgaySinh.Value;
                 if (cbGioiTinh.Checked)
                 {
                     emp.GioiTinh = 1;
@@ -78,7 +78,7 @@ namespace cau1
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
                 emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
-                emp.NgaySinh = dtNgaySinh.CustomFormat;
+                emp.NgaySinh = dtNgaySinh.Value;
                 if (cbGioiTinh.Checked)
                 {
                     emp.GioiTinh = 1;
@@ -106,7 +106,7 @@ namespace cau1
                 emp.HoTen = tbName.Text;
                 emp.NoiSinh = tbNoiSinh.Text;
                 emp.ChucVu = (DepartmentDAO)cbbCV.SelectedItem;
-                emp.NgaySinh = dtNgaySinh.CustomFormat;
+                emp.NgaySinh = dtNgaySinh.Value;
                 if (cbGioiTinh.Checked)
                 {
                     emp.GioiTinh = 1;
@@ -125,19 +125,18 @@ namespace cau1
                 row.Cells[5].Value = emp.ChucVu;
             }
         }
-
-        private void dvgNhanVien_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvCustomer_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             int idx = e.RowIndex;
             DataGridViewRow row = dvgNhanVien.Rows[idx];
             if (row.Cells[0].Value != null)
             {
-                tbIdNV.Text = row.Cells[0].Value.ToString();
-                tbName.Text = row.Cells[1].Value.ToString();
-                tbNoiSinh.Text = row.Cells[2].Value.ToString();
-                dtNgaySinh.Value = Convert.ToDateTime(row.Cells[3].Value.ToString());
-                int gioitinh = int.Parse(row.Cells[4].Value.ToString());
-                if (gioitinh == 1)
+                tbIdNV.Text = dvgNhanVien.Rows[idx].Cells[0].Value.ToString();
+                tbName.Text = dvgNhanVien.Rows[idx].Cells[1].Value.ToString();
+                tbNoiSinh.Text = dvgNhanVien.Rows[idx].Cells[2].Value.ToString();
+                dtNgaySinh.Text = dvgNhanVien.Rows[idx].Cells[3].Value.ToString();
+                string cb = dvgNhanVien.Rows[idx].Cells[4].Value.ToString();
+                if (cb == "True")
                 {
                     cbGioiTinh.Checked = true;
                 }
@@ -145,8 +144,11 @@ namespace cau1
                 {
                     cbGioiTinh.Checked = false;
                 }
-                cbbCV.Text = row.Cells[5].Value.ToString();
+
+                cbbCV.Text = dvgNhanVien.Rows[idx].Cells[5].Value.ToString();
+
             }
         }
     }
 }
+

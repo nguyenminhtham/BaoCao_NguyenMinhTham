@@ -30,6 +30,12 @@ namespace cau1
         private void InitializeComponent()
         {
             this.dvgNhanVien = new System.Windows.Forms.DataGridView();
+            this.Ma = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoiSinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -44,12 +50,6 @@ namespace cau1
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbNoiSinh = new System.Windows.Forms.TextBox();
             this.cbbCV = new System.Windows.Forms.ComboBox();
-            this.Ma = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoiSinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvgNhanVien)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +70,43 @@ namespace cau1
             this.dvgNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dvgNhanVien.Size = new System.Drawing.Size(641, 150);
             this.dvgNhanVien.TabIndex = 4;
-            this.dvgNhanVien.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgNhanVien_RowEnter);
+            this.dvgNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_RowEnter);
+            // 
+            // Ma
+            // 
+            this.Ma.DataPropertyName = "Ma";
+            this.Ma.HeaderText = "Mã";
+            this.Ma.Name = "Ma";
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.HeaderText = "Họ tên";
+            this.HoTen.Name = "HoTen";
+            // 
+            // NoiSinh
+            // 
+            this.NoiSinh.DataPropertyName = "NoiSinh";
+            this.NoiSinh.HeaderText = "Nơi Sinh";
+            this.NoiSinh.Name = "NoiSinh";
+            // 
+            // NgaySinh
+            // 
+            this.NgaySinh.DataPropertyName = "NgaySinh";
+            this.NgaySinh.HeaderText = "Ngày Sinh";
+            this.NgaySinh.Name = "NgaySinh";
+            // 
+            // GioiTinh
+            // 
+            this.GioiTinh.DataPropertyName = "GioiTinh";
+            this.GioiTinh.HeaderText = "Giới Tính";
+            this.GioiTinh.Name = "GioiTinh";
+            // 
+            // ChucVu
+            // 
+            this.ChucVu.DataPropertyName = "ChucVu";
+            this.ChucVu.HeaderText = "Đơn Vị";
+            this.ChucVu.Name = "ChucVu";
             // 
             // btnThem
             // 
@@ -132,7 +168,7 @@ namespace cau1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(209, 73);
+            this.label4.Location = new System.Drawing.Point(266, 77);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 15);
             this.label4.TabIndex = 7;
@@ -149,6 +185,7 @@ namespace cau1
             // 
             // dtNgaySinh
             // 
+            this.dtNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtNgaySinh.Location = new System.Drawing.Point(455, 27);
             this.dtNgaySinh.Name = "dtNgaySinh";
             this.dtNgaySinh.Size = new System.Drawing.Size(207, 23);
@@ -157,7 +194,7 @@ namespace cau1
             // cbGioiTinh
             // 
             this.cbGioiTinh.AutoSize = true;
-            this.cbGioiTinh.Location = new System.Drawing.Point(686, 30);
+            this.cbGioiTinh.Location = new System.Drawing.Point(505, 76);
             this.cbGioiTinh.Name = "cbGioiTinh";
             this.cbGioiTinh.Size = new System.Drawing.Size(102, 19);
             this.cbGioiTinh.TabIndex = 10;
@@ -180,9 +217,9 @@ namespace cau1
             // 
             // tbNoiSinh
             // 
-            this.tbNoiSinh.Location = new System.Drawing.Point(266, 67);
+            this.tbNoiSinh.Location = new System.Drawing.Point(333, 74);
             this.tbNoiSinh.Name = "tbNoiSinh";
-            this.tbNoiSinh.Size = new System.Drawing.Size(522, 23);
+            this.tbNoiSinh.Size = new System.Drawing.Size(154, 23);
             this.tbNoiSinh.TabIndex = 13;
             // 
             // cbbCV
@@ -190,50 +227,14 @@ namespace cau1
             this.cbbCV.FormattingEnabled = true;
             this.cbbCV.Location = new System.Drawing.Point(68, 67);
             this.cbbCV.Name = "cbbCV";
-            this.cbbCV.Size = new System.Drawing.Size(121, 23);
+            this.cbbCV.Size = new System.Drawing.Size(168, 23);
             this.cbbCV.TabIndex = 14;
-            // 
-            // Ma
-            // 
-            this.Ma.DataPropertyName = "Ma";
-            this.Ma.HeaderText = "Mã";
-            this.Ma.Name = "Ma";
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Họ tên";
-            this.HoTen.Name = "HoTen";
-            // 
-            // NoiSinh
-            // 
-            this.NoiSinh.DataPropertyName = "NoiSinh";
-            this.NoiSinh.HeaderText = "Nơi Sinh";
-            this.NoiSinh.Name = "NoiSinh";
-            // 
-            // NgaySinh
-            // 
-            this.NgaySinh.DataPropertyName = "NgaySinh";
-            this.NgaySinh.HeaderText = "Ngày Sinh";
-            this.NgaySinh.Name = "NgaySinh";
-            // 
-            // GioiTinh
-            // 
-            this.GioiTinh.DataPropertyName = "GioiTinh";
-            this.GioiTinh.HeaderText = "Giới Tính";
-            this.GioiTinh.Name = "GioiTinh";
-            // 
-            // ChucVu
-            // 
-            this.ChucVu.DataPropertyName = "ChucVu";
-            this.ChucVu.HeaderText = "Đơn Vị";
-            this.ChucVu.Name = "ChucVu";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 339);
+            this.ClientSize = new System.Drawing.Size(670, 339);
             this.Controls.Add(this.cbbCV);
             this.Controls.Add(this.tbNoiSinh);
             this.Controls.Add(this.tbName);
