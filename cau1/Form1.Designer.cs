@@ -200,6 +200,7 @@ namespace cau1
             this.cbGioiTinh.TabIndex = 10;
             this.cbGioiTinh.Text = "Giới Tính Nam";
             this.cbGioiTinh.UseVisualStyleBackColor = true;
+
             // 
             // tbIdNV
             // 

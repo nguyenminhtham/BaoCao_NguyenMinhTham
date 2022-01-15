@@ -122,7 +122,7 @@ namespace cau1
                 row.Cells[2].Value = emp.NoiSinh;
                 row.Cells[3].Value = emp.NgaySinh;
                 row.Cells[4].Value = emp.GioiTinh;
-                row.Cells[5].Value = emp.ChucVu;
+                row.Cells[5].Value = emp.TenChucVu;
             }
         }
         private void dgvCustomer_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -136,7 +136,7 @@ namespace cau1
                 tbNoiSinh.Text = dvgNhanVien.Rows[idx].Cells[2].Value.ToString();
                 dtNgaySinh.Text = dvgNhanVien.Rows[idx].Cells[3].Value.ToString();
                 string cb = dvgNhanVien.Rows[idx].Cells[4].Value.ToString();
-                if (cb == "True")
+                if (cb == "1")
                 {
                     cbGioiTinh.Checked = true;
                 }
